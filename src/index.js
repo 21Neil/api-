@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Home from './Home';
+import Home from './component/Home';
 import reportWebVitals from './reportWebVitals';
 import {CookiesProvider} from 'react-cookie';
 

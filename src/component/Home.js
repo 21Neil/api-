@@ -1,20 +1,18 @@
 import React from 'react';
 import { useCookies } from 'react-cookie';
-import { 
-  makeStyles,
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  IconButton,
-  Menu,
-  MenuItem
-} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import './App.css';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
 import Contact from './Contact';
 import ToDoList from './ToDoList';
 import LoginForm from './LoginForm';
-import Album from './Album'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +31,7 @@ export default function ButtonAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);//null 在布林值裡是false
   const [task, setTask] = React.useState(0);
   const [openLogin, setOpenLogin] = React.useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(['username', 'password']);
+  const [cookies, setCookies, removeCookie] = useCookies(['username', 'password']);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -90,6 +88,7 @@ export default function ButtonAppBar() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+        <MenuItem onClick={() => {handleTask(0);handleClose()}}>{title[0]}</MenuItem>
         <MenuItem onClick={() => {handleTask(1);handleClose()}}>{title[1]}</MenuItem>
         <MenuItem onClick={() => {handleTask(2);handleClose()}}>{title[2]}</MenuItem>
         {
@@ -100,7 +99,7 @@ export default function ButtonAppBar() {
       {openLogin && <LoginForm open = {true} close = {() => setOpenLogin(false)}/>}
       {task === 1 && <Contact/>}{/*if(task === 1) <Contact/>*/}
       {task === 2 && <ToDoList/>}
-      {task === 0 && <Album/>}
+      {task === 0 && <h1 className='welcome'>Welcome</h1>}
     </div>
   );
 }

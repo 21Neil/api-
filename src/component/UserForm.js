@@ -27,7 +27,7 @@ export default function FormDialog(props) {
     props.func(false, '', '', '', '');
     setOpen(false);
   };
-
+  
   return (
     <div>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">

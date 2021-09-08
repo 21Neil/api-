@@ -96,7 +96,7 @@ function App() {
     load()
     if(status !== '')
       setStatus('');
-  },[]);
+  },[status]);
 
   return (
     <div className='App'>

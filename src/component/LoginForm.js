@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import axios from'axios';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,23 +10,53 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import {useCookies} from 'react-cookie';
 
 export default function FormDialog(props) {
-  const [open, setOpen] = React.useState(props.open);
-  const [cookies, setCookie, removeCookie] = useCookies(['username', 'password']);
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [open, setOpen] = useState(props.open);
+  const [cookie, setCookie, removeCookie] = useCookies(['username', 'password']);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleClose = () => {
     setOpen(false);
     props.close(false);
   };
 
+  const Axios = axios.create({
+    baseURL: 'http://localhost/php-login-registration-api/',
+  });
+
   const handleLogin = () => {
+    Axios.post('login.php',{
+      name:username,
+      password:password
+    })
+    .then((res) => {
+      console.log(res)
+      if(res.data.message === 'You have successfully logged in.'){
+        setCookie('username', username, {path: '/'})
+        props.close()
+      }
+      else alert('Wrong Username or Password')        
+    })   
+  }
+
+  const handleRegister = () => {
+    Axios.post('register.php',{
+      name:username,
+      password:password
+    })
+    .then(
+        props.close(),
+        alert('Register success!')
+      )   
+  }
+
+  /*const handleLogin = () => {
       if(username === 'tom' && password === '123') {
         setCookie('username', username, {path: '/'});
         props.close();
       }
       else alert('Wrong Username or Password')
-  }
+  }*/
 
   return (
     <div>
@@ -55,12 +86,15 @@ export default function FormDialog(props) {
           />
         </DialogContent>
         <DialogActions>
+          <Button onClick={handleRegister} color="primary" style={{ marginRight: "auto"}}>
+            Register
+          </Button>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
           <Button onClick={handleLogin} color="primary">
             Login
-          </Button>
+          </Button>          
         </DialogActions>
       </Dialog>
     </div>
