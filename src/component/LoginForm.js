@@ -21,7 +21,7 @@ export default function FormDialog(props) {
   };
 
   const Axios = axios.create({
-    baseURL: 'http://localhost/php-login-registration-api/',
+    baseURL: 'http://localhost/api/php-login-registration-api/',
   });
 
   const handleLogin = () => {

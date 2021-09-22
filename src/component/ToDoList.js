@@ -55,7 +55,7 @@ function App() {
       task: task,
       done: done
     };
-    fetch('http://127.0.0.1/WD/Week4/api/saveData.php',{
+    fetch('http://127.0.0.1/api/saveData.php',{
       method: 'POST',
       headers: {
         'Content-Type':'application/json'
@@ -75,7 +75,7 @@ function App() {
   }
 
   const load = () => {
-    fetch('http://127.0.0.1/WD/Week4/api/loadData.php',{
+    fetch('http://127.0.0.1/api/loadData.php',{
       method: 'GET'
     })
     .then(res => {
