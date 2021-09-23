@@ -52,7 +52,7 @@ export default function CustomizedTables() {
         if (isAdd) {
             const row = createData(name, gander, phone, email);
             const data = { func: 'insert', data:row };
-            fetch('http://localhost/WD/Week4/api/user_mgt.php', {
+            fetch('http://localhost/api/user_mgt.php', {
                 method: 'POST',
                 body: JSON.stringify(data), // 傳給後端API的參數
                 headers: {
@@ -80,7 +80,7 @@ export default function CustomizedTables() {
             const row = createData(name, gander, phone, email);
             row.id=rows[index].id;
             const data = { func: 'update', data:row };
-            fetch('http://localhost/WD/Week4/api/user_mgt.php', {
+            fetch('http://localhost/api/user_mgt.php', {
                 method: 'POST',
                 body: JSON.stringify(data), // 傳給後端API的參數
                 headers: {
@@ -105,7 +105,7 @@ export default function CustomizedTables() {
     const delContact = (index) => {
         if (window.confirm('確認刪除: ' + rows[index].name + '?')) {           
             const data = { func: 'delete', id:rows[index].id };
-            fetch('http://localhost/WD/Week4/api/user_mgt.php', {
+            fetch('http://localhost/api/user_mgt.php', {
                 method: 'POST',
                 body: JSON.stringify(data), // 傳給後端API的參數
                 headers: {
@@ -128,7 +128,7 @@ export default function CustomizedTables() {
     // componentDidMount
     React.useEffect(() => {
         const data = { func: 'query' };
-        fetch('http://localhost/WD/Week4/api/user_mgt.php', {
+        fetch('http://localhost/api/user_mgt.php', {
             method: 'POST',
             body: JSON.stringify(data), // 傳給後端API的參數
             headers: {
