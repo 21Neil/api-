@@ -17,9 +17,9 @@ function ToDo(props) {
                     <TableRow>
                         <TableCell>
                             <h2>{props.title}
-                                {<IconButton aria-label="delete" onClick = {props.toDoClear} >
+                                <IconButton aria-label="delete" onClick = {props.toDoClear} >
                                     <DeleteIcon/>
-                                </IconButton>}
+                                </IconButton>
                             </h2>
                         </TableCell>
 
@@ -59,10 +59,10 @@ function Done(props) {
                 <TableHead>
                     <TableRow>
                         <TableCell>
-                            <h2 >{props.title}
-                                {<IconButton aria-label="delete" onClick = {props.doneClear}>
+                            <h2>{props.title}
+                                <IconButton aria-label="delete" onClick = {props.doneClear}>
                                     <DeleteIcon />
-                                </IconButton>}
+                                </IconButton>
                             </h2>
                         </TableCell>
                     </TableRow>
